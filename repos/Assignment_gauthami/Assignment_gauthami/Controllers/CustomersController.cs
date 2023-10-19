@@ -14,7 +14,7 @@ namespace Assignment_gauthami.Controllers
 
         public IEnumerable<object> Orders { get; internal set; }
 
-        [HttpPost]
+        [HttpPost("/createCustomer")]
         public ActionResult<Customer> CreateCustomer([FromBody] Customer customer)
         {
             customer.UserId = Guid.NewGuid();
@@ -29,7 +29,7 @@ namespace Assignment_gauthami.Controllers
             return Ok(customers);
         }
 
-        [HttpPost("{id}")]
+        [HttpPost("updateCustomer/{id}")]
         public ActionResult<Customer> UpdateCustomer(Guid id, [FromBody] Customer updatedCustomer)
         {
             var existingCustomer = customers.FirstOrDefault(c => c.UserId == id);
@@ -47,7 +47,7 @@ namespace Assignment_gauthami.Controllers
             return Ok(existingCustomer);
         }
 
-        [HttpDelete("{id}")]
+        [HttpDelete("delete/{id}")]
         public ActionResult DeleteCustomer(Guid id)
         {
             var existingCustomer = customers.FirstOrDefault(c => c.UserId == id);
